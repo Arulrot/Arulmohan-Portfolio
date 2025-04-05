@@ -1,6 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script>
+        const firebaseConfig = {
+          apiKey: "AIzaSyDPkPKL0HjwOkscBr1ORQW7VzxZwkwDXwo",
+          authDomain: "visitorscount-c6a2e.firebaseapp.com",
+          databaseURL: "https://visitorscount-c6a2e-default-rtdb.firebaseio.com",
+          projectId: "visitorscount-c6a2e",
+          storageBucket: "visitorscount-c6a2e.firebasestorage.app",
+          messagingSenderId: "1002328964638",
+          appId: "1:1002328964638:web:7194d49e8531046d69780f",
+          measurementId: "G-X7MJDE02C6"
+        };
+    
+        
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const counterRef = database.ref('visitorCount');
+    
+        
+        counterRef.transaction(current => {
+          return (current || 0) + 1;
+        });
+    
+        
+        counterRef.on('value', (snapshot) => {
+          document.getElementById('visitor-count').textContent = snapshot.val();
+        });
+      </script>
+    
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arulmohan P  - DevOps Engineer</title>
@@ -288,6 +320,10 @@
         }
     });
 </script>
+<h3> Visitor Count: <span id="visitor-count">Loading ...</span></h3>
+<p id="special-message" style="font-size: 1.2em; color: #2e189d; font-weight: bold;">
+    You're helping my portfolio grow, Thank you!❤️
+  </p>
             <nav class="nav-menu">
                 <a href="#about">About</a>
                 <a href="#skills">Skills</a>
@@ -398,6 +434,10 @@
             <div class="card">
                 <h3>Automated CI/CD Pipeline</h3>
                 <p>Jenkins-based deployment automation system</p>
+            </div>
+            <div class="card">
+                <h3>Unicorn A Serverless Web App Using AWS</h3>
+                <p>Hosted with AWS Amplify, Unicorn uses Cognito for login, API Gateway + Lambda for logic, and DynamoDB for fast, secure data storage.</p>
             </div>
         </div>
     </section>
