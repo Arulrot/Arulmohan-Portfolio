@@ -820,7 +820,7 @@ body {
     color: var(--primary-color);
 }
 
-/* Projects Section - OPTIMIZED */
+/* Projects Section - FIXED IMAGE SIZING */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -844,10 +844,25 @@ body {
 }
 
 .project-image {
-    height: 200px;
+    height: 250px; /* Fixed height for consistency */
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     position: relative;
     overflow: hidden;
+}
+
+/* FIX: Proper image sizing to prevent excessive zooming */
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Changed from cover to contain */
+    object-position: center;
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background for empty space */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Optional: Subtle hover zoom effect */
+.project-card:hover .project-image img {
+    transform: scale(1.05); /* Gentle zoom instead of excessive */
 }
 
 .project-overlay {
@@ -923,6 +938,7 @@ body {
     color: var(--text-secondary);
     border: 1px solid var(--border-color);
 }
+
 
 /* Certifications Section - OPTIMIZED */
 .certifications-grid {
